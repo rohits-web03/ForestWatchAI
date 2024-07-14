@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css");
+
+body{
+    font-family: 'Poppins', sans serif;
+    background-image: url("../assets/Images/form_background.jpeg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
+    height: 100vh;
+}
+/* .login_bg,.signup_bg,.contact_bg for adding background specifically for the login,signup and contact page*/
+.contact{
+    position: relative;
+    min-height: 100vh;
+    padding: 50px 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.contact .contact_header{
+    max-width: 800px;
+    text-align: center;
+}
+
+.contact .contact_header p{
+    font-weight: 300;
+    color: #fff;
+    font-size: 1.2rem;
+}
+
+.contact .contact_header h1{
+    font-size: 2rem;
+    font-weight: 500;
+    color: #fff;
+}
+
+.contact_container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    padding-left: 10%;
+}
+
+.contact_container .contact_info{
+    display: flex;
+    flex-direction: column;
+    margin-right: 30px;
+}
+
+.contact_container .contact_info .contact_box{ 
+    position: relative;
+    padding: 20px 0;
+    display: flex;
+}
+
+.contact_container .contact_info .contact_box .icon{
+    min-width: 60px;
+    height: 60px;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 22px;
+}
+
+.contact_container .contact_info .contact_box .text{
+    display: flex;
+    margin-left: 20px;
+    font-size: 16px;
+    color: #fff;
+    flex-direction: column;
+    font-weight: 300;
+}
+
+.contact_container .contact_info .contact_box h3{
+    font-weight: 500;
+    color:aqua;
+    display: flex;
+}
+
+.contact_container .contact_form{
+    padding: 35px 45px 6px 45px;
+}
+
+.contact_container .contact_form h1{
+    margin-bottom: 30px;
+    color: #ddd;
+}
+
+.form_container{
+    width: 550px;
+    margin: 7% auto;
+    border-radius: 25px;
+    background-color: rgb(0, 0 , 0,0.5);
+    box-shadow: 0 0 17px #333;
+}
+
+.form_header{
+    text-align: center;
+    padding-top: 75px;
+    color: #fff;
+}
+
+.form_header h1{
+    color: #fff;
+    font-size: 45px;
+    margin-bottom: 50px;
+}
+
+.form_body{
+    text-align: center;
+}
+
+.form_header a{
+    color: aliceblue;
+    text-decoration: none;
+    padding-left: 10px;
+    position: relative;
+    bottom: 20px;
+}
+
+.form_header a:hover{
+    text-decoration: underline;
+}
+
+.submit, .input-field{
+    width: 300px;
+    height: 40px;
+    border: none;
+    outline: none;
+    padding-left: 20px;
+    box-sizing: border-box;
+    font-size: 15px;
+    color: #333;
+    margin-bottom: 40px;
+    opacity: 50%;
+}
+
+.form_header span{
+    position: relative;
+    bottom: 20px;
+}
+
+.submit{
+    padding-left: 0;
+    background-color: aquamarine;
+    letter-spacing: 1px;
+    font-weight: bold;
+    margin-bottom: 70px;
+}
+
+.submit:hover{
+    box-shadow: 2px 2px 5px #555;
+    background-color: #26afad;
+}
+
+.input-field:hover{
+    box-shadow: 2px 2px 5px #555;
+    background-color: #ddd;
+}
+
+.login_bg{
+    padding-top: 70px;
+}

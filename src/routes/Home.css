@@ -1,0 +1,167 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  /* Global styles */
+
+  body {
+    scroll-behavior: smooth;
+  }
+  
+  #main {
+    width: 100%;
+  }
+  
+  /* Page styles */
+  
+  .page {
+    width: 100%;
+    height: 100vh;
+  }
+  
+  /* Hero section */
+  
+  .hero {
+    background-image: url("../assets/Images/home-hero.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    
+  }
+  
+  #heading {
+    text-align: left;
+    padding-left: 40px;
+  }
+  
+  #heading h1 {
+    font-size: 5.5vw;
+    line-height: 1;
+    font-weight: 600;
+  }
+
+    #heading p{
+        margin-top:30px;
+    }
+  
+  .btn-box {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    gap: 30px;
+  }
+  
+  .btn {
+    height: 2.4rem;
+    width: 9rem;
+    border: 2px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.5rem;
+    color: white;
+    background-color: #211f1f;
+    text-decoration: none;
+    transition: 0.3s ease-in;
+    font-size: 20px;
+    font-weight: 500;
+  }
+  
+  .btn:hover {
+    background-color: #535555;
+   
+  }
+  
+  /* page-2 */
+  
+  #page-2 {
+    background-color: black;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  /* page-3 */
+
+  
+
+  /* page-3 */
+
+   #page-3 {
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(159, 203, 241);
+}
+
+#page3-con {
+  margin-top: 7rem;
+}
+
+#map-weather-section {
+  display: flex;
+  justify-content: space-between;
+}
+#map-box {
+  height: 30rem;
+  width: 50rem;
+  border: 2px solid rgb(116, 108, 108);
+  margin-left: 2rem;
+  background-color: aquamarine;
+  border-radius: 5px;
+  box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.3);;
+}
+#map-img{
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+  cursor:pointer;
+}
+
+.hover-div {
+  position: relative;
+  display: inline-block;
+}
+
+.hover-div img {
+  max-width: 100%;
+  height: auto;
+  transition: filter 0.3s ease-in-out;
+}
+
+.hover-div:hover img {
+  filter: brightness(70%);
+}
+
+.hover-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 25.5px;
+  color: white;
+  background-color: rgba(0, 0, 0, 0.65);
+  padding: 5px 10px;
+  border-radius: 5px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.hover-div:hover .hover-text {
+  opacity: 1;
+}
+
+
+
+
+  
+

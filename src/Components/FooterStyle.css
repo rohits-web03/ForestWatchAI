@@ -1,0 +1,99 @@
+/* Font Awesome icons */
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
+
+/* Footer styles */
+.footer {
+    background-color: #333;
+    color: #fff;
+    padding: 40px 0;
+    height: 15rem;
+  }
+  
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .footer-info,
+  .footer-links,
+  .footer-social {
+    flex: 1;
+    margin: 0 20px;
+  }
+  
+  .footer-info h3,
+  .footer-links h3,
+  .footer-social h3 {
+    margin-bottom: 15px;
+  }
+
+  .footer-info a{
+    text-decoration: none;
+    color: #fff;
+  }
+
+  .footer-info a:hover{
+    color:  #f4ca62;
+  }
+  
+  .footer-info p,
+  .footer-links ul li,
+  .footer-social .social-icons a {
+    color: #fff;
+  }
+  
+  .footer-links ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-links ul li {
+    margin-bottom: 10px;
+  }
+  
+  .footer-links ul li a {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  .footer-links ul li a:hover {
+    color: #f4ca62;
+  }
+  
+  .social-icons {
+    display: flex;
+    
+  }
+
+  .social-icons{
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .social-icons a {
+    color: #fff;
+    font-size: 20px;
+    margin-right: 10px;
+    text-decoration: none;
+  }
+  
+  .social-icons a:hover {
+    color: #f4ca62;
+  }
+  
+  .footer-bottom {
+    background-color: #222;
+    text-align: center;
+    padding: 10px 0;
+  }
+  
+  .footer-bottom p {
+    margin: 0;
+    color: #fff;
+  }
+  
+  
+  

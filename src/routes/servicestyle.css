@@ -1,0 +1,55 @@
+ *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+#serv-h1{
+    margin-top: 100px;
+}
+#ser-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3rem;
+    gap: 30px;
+}
+.ser-btn{
+    height: 200px;
+    width: 500px;
+    color:white;
+    border-radius: 25px;
+    border: 3px solid black;
+    box-shadow: 10px 10px 4px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease-in;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: large;
+} 
+
+.ser-btn:hover{
+    background-color: aqua;
+    height: 250px;
+    width:550px ;
+    
+    transform: scale(1.1);
+}
+#bt-1{
+background-image: url('https://cdn.downtoearth.org.in/library/large/2019-05-15/0.65823400_1557900249_hunting_gettyimages.jpg');  
+  background-size: cover;
+  background-position: center;
+}
+#bt-2{
+    background-image: url('https://cdn.britannica.com/90/191790-050-092C8C2A/Wildfire-Stanislaus-National-Forest-California-2013.jpg');  
+      background-size: cover;
+      background-position: center;
+    }
+#bt-3{
+        background-image: url('https://worldrivers.net/wp-content/uploads/2018/12/MG_2459_DxO.jpg');  
+          background-size: cover;
+          background-position: center;
+        }
+
+#footer-ser{
+    margin-top:1.5rem;
+}
