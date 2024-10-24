@@ -1,0 +1,49 @@
+services:
+  db:
+    image: postgres
+    restart: always
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+
+  fwai_client:
+    build:
+      context: .
+      dockerfile: Dockerfile_Client
+      target: development  # For development stage, adjust if needed
+    ports:
+      - 5173:5173
+    # environment:
+    #   - REACT_APP_API_URL=${REACT_APP_API_URL}
+    env_file:
+      - .env
+    depends_on:
+      - fwai_server
+
+  fwai_server:
+    build:
+      context: .
+      dockerfile: Dockerfile_Server  
+    ports:
+      - 5000:5000
+    environment:
+      - FLASK_APP=${FLASK_APP}
+      - FLASK_ENV=${FLASK_ENV}
+      - DATABASE_URL=postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
+    env_file:
+      - .env
+    volumes:
+      - ./server:/usr/src/app
+    depends_on:
+      - db
