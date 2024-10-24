@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import useAuth from "@/hooks/useAuth";
 
 interface LoginForm {
   email: string;
@@ -8,6 +11,8 @@ interface LoginForm {
 const Login: React.FC = () => {
   const [formData, setFormData] = useState<LoginForm>({ email: '', password: '' });
   const [errors, setErrors] = useState<Partial<LoginForm>>({});
+  const isAuthenticated = useAuth();
+  const navigate=useNavigate();
 
   const validateForm = () => {
     let tempErrors: Partial<LoginForm> = {};
@@ -23,16 +28,52 @@ const Login: React.FC = () => {
     return Object.keys(tempErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
     if (validateForm()) {
-      console.log('Login Data:', formData);
+      try {
+        console.log('Login Data:', formData);
+
+        // Make the POST request for login
+        const res = await axios.post("http://localhost:8000/login", formData, {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true, // Ensure the cookies are sent with requests
+        });
+
+        if (res.status === 200) {
+          alert("Login successful!");
+          navigate("/dashboard");
+        } else {
+          alert(`Login failed: ${res.data.message}`);
+        }
+      } catch (error: any) {
+        console.error("Error:", error);
+        
+        if (error.message) {
+          alert(`Error: ${error.message}`);
+        } else {
+          alert("Something went wrong. Please try again.");
+        }
+      }
     }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
+  useEffect(() => {
+    if (isAuthenticated === true) {
+      navigate('/dashboard'); 
+    }
+  }, [isAuthenticated, navigate]);
+
+  if (isAuthenticated === null) {
+    return <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">Loading...</div>;  
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">

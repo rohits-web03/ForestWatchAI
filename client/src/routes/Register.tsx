@@ -1,4 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import useAuth from "@/hooks/useAuth";
 
 interface RegisterForm {
   name: string;
@@ -10,6 +13,8 @@ interface RegisterForm {
 const Register: React.FC = () => {
   const [formData, setFormData] = useState<RegisterForm>({ name: '', email: '', password: '', confirmPassword: '' });
   const [errors, setErrors] = useState<Partial<RegisterForm>>({});
+  const isAuthenticated = useAuth();
+  const navigate=useNavigate();
 
   const validateForm = () => {
     let tempErrors: Partial<RegisterForm> = {};
@@ -34,40 +39,54 @@ const Register: React.FC = () => {
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    
-    // Only proceed if the form is valid
-    if (validateForm()) {
-      try {
-        console.log('Register Data:', formData);
+      e.preventDefault();
+      
+      // Only proceed if the form is valid
+      if (validateForm()) {
+        try {
+          console.log('Register Data:', formData);
   
-        const res = await fetch("http://localhost:8000/register", {
-          method: "POST", // Set the method to POST
-          headers: {
-            "Content-Type": "application/json", // Specify the content type as JSON
-          },
-          body: JSON.stringify(formData), // Send the formData as a JSON string
-        });
+          // Make the POST request using axios
+          const res = await axios.post("http://localhost:8000/register", formData, {
+            headers: {
+              "Content-Type": "application/json", // Specify the content type as JSON
+            },
+          });
   
-        // Parse the response
-        const data = await res.json(); 
-  
-        // Display the response message in an alert
-        if (res.ok) {
-          alert(`Success: ${data.message}`);
-        } else {
-          alert(`Error: ${data.message}`);
+          // Axios automatically parses the JSON response, so no need to do res.json()
+          if (res.status === 201) {
+            alert(`Success: ${res.data.message}`);
+            navigate("/dashboard");
+          } else {
+            alert(`Error: ${res.data.message}`);
+          }
+        } catch (error: any) {
+          // Handle network or server error
+          console.error("Error:", error);
+          
+          if (error.response) {
+            // If the error response comes from the server, show the error message
+            alert(`Error: ${error.response.data.message}`);
+          } else {
+            alert("Something went wrong. Please try again.");
+          }
         }
-      } catch (error) {
-        console.error("Error:", error);
-        alert("Something went wrong. Please try again.");
       }
-    }
   };  
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
+  useEffect(() => {
+    if (isAuthenticated === true) {
+      navigate('/dashboard'); // Redirect to login if not authenticated
+    }
+  }, [isAuthenticated, navigate]);
+
+  if (isAuthenticated === null) {
+    return <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">Loading...</div>;  // Render loading while checking auth status
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">
