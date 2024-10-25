@@ -5,3 +5,4 @@ SQLAlchemy
 psycopg2-binary 
 Flask-Bcrypt
 PyJWT
+Flask-SQLAlchemy
