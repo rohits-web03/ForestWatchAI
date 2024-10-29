@@ -14,7 +14,7 @@ load_dotenv("../.env")
 
 app = Flask(__name__)
 bcrypt = Bcrypt(app)
-CORS(app, supports_credentials=True, origins=["http://localhost:5173"])
+CORS(app, supports_credentials=True, origins=["https://forestwatchai.vercel.app/"])
 logger = get_logger('app')
 
 # Configure the PostgreSQL database connection
