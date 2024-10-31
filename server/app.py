@@ -14,7 +14,11 @@ load_dotenv("../.env")
 
 app = Flask(__name__)
 bcrypt = Bcrypt(app)
-CORS(app, supports_credentials=True, origins=["https://forestwatchai.vercel.app/"])
+allowed_origins = [
+    "https://forestwatchai.vercel.app", 
+    "http://localhost:5173"              
+]
+CORS(app, supports_credentials=True, origins=allowed_origins)
 logger = get_logger('app')
 
 # Configure the PostgreSQL database connection
@@ -129,7 +133,7 @@ def login():
 
         # Set the token in a secure HTTP-only cookie
         response = make_response(jsonify({"message": "Login successful"}))
-        response.set_cookie('token', token, httponly=True, secure=True, samesite='Lax')
+        response.set_cookie('token', token, httponly=True, secure=True, samesite='None')
 
         return response
     else:
