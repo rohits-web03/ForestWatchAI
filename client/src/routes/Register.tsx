@@ -47,7 +47,7 @@ const Register: React.FC = () => {
           console.log('Register Data:', formData);
   
           // Make the POST request using axios
-          const res = await axios.post("http://localhost:8000/register", formData, {
+          const res = await axios.post("https://forestwatchai-714k.onrender.com/register", formData, {
             headers: {
               "Content-Type": "application/json", // Specify the content type as JSON
             },

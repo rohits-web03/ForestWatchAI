@@ -12,7 +12,7 @@ const Login: React.FC = () => {
   const [formData, setFormData] = useState<LoginForm>({ email: '', password: '' });
   const [errors, setErrors] = useState<Partial<LoginForm>>({});
   const isAuthenticated = useAuth();
-  const navigate=useNavigate();
+  const navigate = useNavigate();
 
   const validateForm = () => {
     let tempErrors: Partial<LoginForm> = {};
@@ -30,33 +30,25 @@ const Login: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
+
     if (validateForm()) {
       try {
-        console.log('Login Data:', formData);
-
-        // Make the POST request for login
-        const res = await axios.post("http://localhost:8000/login", formData, {
+        const res = await axios.post("https://forestwatchai-714k.onrender.com/login", formData, {
           headers: {
             "Content-Type": "application/json",
           },
-          withCredentials: true, // Ensure the cookies are sent with requests
+          withCredentials: true,
         });
 
         if (res.status === 200) {
           alert("Login successful!");
-          navigate("/dashboard");
+          // Instead of navigate, let isAuthenticated handle redirection
         } else {
           alert(`Login failed: ${res.data.message}`);
         }
       } catch (error: any) {
         console.error("Error:", error);
-        
-        if (error.message) {
-          alert(`Error: ${error.message}`);
-        } else {
-          alert("Something went wrong. Please try again.");
-        }
+        alert(error.response?.data?.message || "Something went wrong. Please try again.");
       }
     }
   };

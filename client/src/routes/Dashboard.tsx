@@ -10,7 +10,7 @@ const Dashboard = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.post('http://localhost:8000/logout', {}, { withCredentials: true });
+      await axios.post('https://forestwatchai-714k.onrender.com/logout', {}, { withCredentials: true });
       
       // Redirect to login or another page
       window.location.href = "/login";

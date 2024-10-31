@@ -7,7 +7,7 @@ const useAuth = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const res = await axios.get('http://localhost:8000/auth-check', { withCredentials: true });
+        const res = await axios.get('https://forestwatchai-714k.onrender.com/auth-check', { withCredentials: true });
         setAuth(res.data.isAuthenticated);
       } catch (error) {
         setAuth(false);
