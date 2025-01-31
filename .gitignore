@@ -1,0 +1,60 @@
+# Node.js dependencies
+node_modules/
+.next/
+out/
+dist/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Next.js build artifacts
+.next/
+.vercel/
+.cache/
+
+# TypeScript
+*.tsbuildinfo
+
+# IDE / Editor settings
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# MacOS / System files
+.DS_Store
+Thumbs.db
+
+# Docker
+docker-compose.override.yml
+docker-compose.prod.yml
+pgdata/
+db-data/
+*.pid
+
+# PostgreSQL
+postgres-data/
+*.sql-journal
+
+# NextAuth JWT Session Files 
+nextauth.json
+
+# Coverage reports
+coverage/
+.nyc_output/
+
+# Local tooling
+*.lock
+.eslintcache
+stylelint.cache
