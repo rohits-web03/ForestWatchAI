@@ -14,3 +14,8 @@ export const SignUpSchema = z.object({
         message: "Password must be at least 6 characters long",
     }),
 });
+
+export const SignInSchema = z.object({
+    email: z.string(),
+    password: z.string()
+});

@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
+import bcrypt from "bcryptjs";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { prisma } from "@/prisma/prisma";
 
@@ -12,18 +13,60 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         email: { label: "Email", type: "text", placeholder: "Enter your email" },
         password: { label: "Password", type: "password" }
       },
-      authorize: async (credentials) => {
-        let user = null;
-        user = {
-          id: "122",
-          email: "test@ndm.com",
-          password: "test1234"
+      async authorize(credentials: any): Promise<any> {
+        try {
+          const user = await prisma.user.findFirst({
+            where: {
+              email: credentials.email
+            }
+          });
+          if (!user) {
+            throw new Error('No user found with this email');
+          }
+          if (!user.password) {
+            throw new Error('Password not set for this user');
+          }
+          const isPasswordCorrect = await bcrypt.compare(
+            credentials.password,
+            user.password
+          );
+
+          if (isPasswordCorrect) {
+            return user;
+          } else {
+            throw new Error('Incorrect password');
+          }
+        } catch (err: any) {
+          throw new Error(err);
         }
-        if (!user) {
-          console.error("Invalid credentials.")
-        }
-        return user
       },
     }),
   ],
+  callbacks: {
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+        token.email = user.email;
+        token.image = user.image;
+        token.emailVerified = user.emailVerified;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      if (token) {
+        session.user.id = token.id;
+        session.user.email = token.email;
+        session.user.image = token.image;
+        session.user.emailVerified = token.emailVerified;
+      }
+      return session;
+    },
+  },
+  session: {
+    strategy: 'jwt',
+  },
+  secret: process.env.AUTH_SECRET,
+  pages: {
+    signIn: '/auth/signin'
+  }
 })
