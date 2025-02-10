@@ -58,6 +58,10 @@ export default function SignInForm() {
         }
     };
 
+    const SigninWithGoogle = async () => {
+        await signIn('google', { callbackUrl: 'http://localhost:3000/dashboard' });
+    }
+
     return (
         <div className="flex justify-center items-center min-h-screen bg-gray-800">
             <div className="w-full max-w-md p-8 space-y-8 bg-white rounded-lg shadow-md">
@@ -94,6 +98,7 @@ export default function SignInForm() {
                         <Button className='w-full' type="submit">Sign In</Button>
                     </form>
                 </Form>
+                <button onClick={SigninWithGoogle}>Signin with Google</button>
                 <div className="text-center mt-4">
                     <p>
                         Not a member yet?{' '}
